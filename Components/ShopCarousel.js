@@ -14,7 +14,7 @@ const img1 = require("../assets/saloon.jpeg");
 const img2 = require("../assets/mackup.jpeg");
 const img3 = require("../assets/babering.jpeg");
 
-const CarouselImage = () => {
+const ShopCarousel = () => {
   const images = [img1, img2, img3];
 
   return (
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CarouselImage;
+export default ShopCarousel;
