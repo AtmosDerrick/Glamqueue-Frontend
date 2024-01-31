@@ -31,7 +31,7 @@ const CarouselImage = () => {
             </View>
             <View className="absolute left-3 bottom-5">
               <TouchableOpacity className="bg-white py-2 px-4 rounded-xl shadow-md">
-                <Text className="font-medium text-red-600">Show Now</Text>
+                <Text className="font-medium text-red-600">Book Now</Text>
               </TouchableOpacity>
             </View>
           </View>

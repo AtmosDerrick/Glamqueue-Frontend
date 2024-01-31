@@ -21,6 +21,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import Home from "../Screens/Home";
+import HomePageRoute from "./HomePageRoute";
 
 const HomeRoute = () => {
   const Tab = createBottomTabNavigator();
@@ -85,7 +86,7 @@ const HomeRoute = () => {
       />
       <Tab.Screen
         name="Home"
-        component={Home}
+        component={HomePageRoute}
         options={{
           tabBarIcon: ({ focused }) => (
             <View

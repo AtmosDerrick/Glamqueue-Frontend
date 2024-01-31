@@ -4,56 +4,125 @@ import {
   Image,
   StyleSheet,
   Dimensions,
-  ImageBackground,
   TouchableOpacity,
   Text,
+  FlatList,
 } from "react-native";
-import Swiper from "react-native-swiper";
 
-const img1 = require("../assets/saloon.jpeg");
-const img2 = require("../assets/mackup.jpeg");
-const img3 = require("../assets/babering.jpeg");
+const img1 = require("../assets/logo1.jpeg");
+const img2 = require("../assets/logo2.jpeg");
+const img3 = require("../assets/logo3.jpeg");
+const img4 = require("../assets/logo4.jpeg");
+const img5 = require("../assets/logo5.jpeg");
 
-const ShopCarousel = () => {
-  const images = [img1, img2, img3];
+const ShopCarousel = ({ handleNavigation }) => {
+  const shops = [
+    {
+      name: "Classic Cuts",
+      location: "123 Main Street, Cityville",
+      averageCharge: 30.0,
+      type: "saloon",
+      image: img1,
+    },
+    {
+      name: "Glamour Spa",
+      location: "456 Oak Avenue, Townsville",
+      averageCharge: 50.0,
+      type: "makeup",
+      image: img2,
+    },
+    {
+      name: "Ink Haven",
+      location: "789 Elm Lane, Villageton",
+      averageCharge: 100.0,
+      type: "tattooing",
+      image: img3,
+    },
+    {
+      name: "Shear Delight",
+      location: "987 Pine Road, Hamletville",
+      averageCharge: 25.0,
+      type: "haircut",
+      image: img4,
+    },
+    {
+      name: "Pierce Paradise",
+      location: "654 Birch Boulevard, Countryside",
+      averageCharge: 40.0,
+      type: "piercing",
+      image: img5,
+    },
+  ];
+
+  const renderItem = ({ item }) => (
+    <TouchableOpacity
+      style={styles.shopItem}
+      onPress={() => {
+        handleNavigation(); // Invoke the handleNavigation function
+      }}>
+      <View>
+        <Text style={styles.shopName}>{item.name}</Text>
+        <Text style={styles.shopLocation}>{item.location}</Text>
+        <Text style={styles.shopAverageCharge}>
+          Average Charge: ${item.averageCharge}
+        </Text>
+        <Text style={styles.shopType}>
+          Type: <Text style={styles.shopTypeText}>{item.type}</Text>
+        </Text>
+      </View>
+      <View>
+        <Image source={item.image} style={styles.image} />
+      </View>
+    </TouchableOpacity>
+  );
 
   return (
-    <View className="h-[25vh] mt-2 rounded-xl  ">
-      <Swiper showsButtons={false} autoplay={true} autoplayTimeout={5}>
-        {images.map((imageUrl, index) => (
-          <View key={index} style={styles.slide}>
-            <View>
-              <Image
-                source={imageUrl}
-                className="h-[30vh] rounded-2xl"
-                style={styles.image}
-              />
-            </View>
-            <View className="absolute left-3 bottom-5">
-              <TouchableOpacity className="bg-white py-2 px-4 rounded-xl shadow-md">
-                <Text className="font-medium text-red-600">Show Now</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        ))}
-      </Swiper>
+    <View style={styles.container}>
+      <FlatList
+        data={shops}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.name}
+      />
     </View>
   );
 };
 
-const { width } = Dimensions.get("window");
-
 const styles = StyleSheet.create({
-  slide: {
+  container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    marginTop: 12,
+  },
+  shopItem: {
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: "#5d1425",
+    padding: 6,
+    borderRadius: 8,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  shopName: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  shopLocation: {
+    color: "#555",
+  },
+  shopAverageCharge: {
+    marginTop: 8,
+  },
+  shopType: {
+    marginTop: 4,
+    color: "#666",
+  },
+  shopTypeText: {
+    color: "#FF0000", // Adjust the color as needed
+    fontWeight: "bold",
   },
   image: {
-    width: width,
-    flex: 1,
-    resizeMode: "cover",
-    borderRadius: 50,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
   },
 });
 
