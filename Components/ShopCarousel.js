@@ -21,35 +21,35 @@ const ShopCarousel = ({ handleNavigation }) => {
       name: "Classic Cuts",
       location: "123 Main Street, Cityville",
       averageCharge: 30.0,
-      type: "saloon",
+      type: "Saloon",
       image: img1,
     },
     {
       name: "Glamour Spa",
       location: "456 Oak Avenue, Townsville",
       averageCharge: 50.0,
-      type: "makeup",
+      type: "Makeup",
       image: img2,
     },
     {
       name: "Ink Haven",
       location: "789 Elm Lane, Villageton",
       averageCharge: 100.0,
-      type: "tattooing",
+      type: "Tattooing",
       image: img3,
     },
     {
       name: "Shear Delight",
       location: "987 Pine Road, Hamletville",
       averageCharge: 25.0,
-      type: "haircut",
+      type: "Haircut",
       image: img4,
     },
     {
       name: "Pierce Paradise",
       location: "654 Birch Boulevard, Countryside",
       averageCharge: 40.0,
-      type: "piercing",
+      type: "Piercing",
       image: img5,
     },
   ];
@@ -57,17 +57,15 @@ const ShopCarousel = ({ handleNavigation }) => {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.shopItem}
+      className="px-4"
       onPress={() => {
         handleNavigation(); // Invoke the handleNavigation function
       }}>
       <View>
-        <Text style={styles.shopName}>{item.name}</Text>
-        <Text style={styles.shopLocation}>{item.location}</Text>
-        <Text style={styles.shopAverageCharge}>
-          Average Charge: ${item.averageCharge}
-        </Text>
+        <Text className="text-base font-medium text-primary">{item.name}</Text>
+        <Text className="text-xs">{item.location}</Text>
         <Text style={styles.shopType}>
-          Type: <Text style={styles.shopTypeText}>{item.type}</Text>
+          Type: <Text className="text-xs text-orange-500">{item.type}</Text>
         </Text>
       </View>
       <View>
@@ -94,12 +92,12 @@ const styles = StyleSheet.create({
   },
   shopItem: {
     marginBottom: 8,
-    borderWidth: 1,
-    borderColor: "#5d1425",
+
     padding: 6,
     borderRadius: 8,
     flexDirection: "row",
     justifyContent: "space-between",
+    backgroundColor: "white",
   },
   shopName: {
     fontSize: 18,

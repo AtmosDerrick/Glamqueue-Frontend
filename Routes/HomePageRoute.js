@@ -27,10 +27,32 @@ const HomePageRoute = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false,
+        headerTitleStyle: {
+          color: "white",
+          backgroundColor: "#5d1425",
+        },
       }}>
-      <Stack.Screen name="homepage" component={Home} />
-      <Stack.Screen name="portfolio" component={ShopPortFolio} />
+      <Stack.Screen
+        name="homepage"
+        component={Home}
+        options={{
+          headerShown: false,
+          headerTitle: "",
+        }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={ShopPortFolio}
+        options={{
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: "#5d1425",
+            borderColor: "#5d1425",
+          },
+          headerTitle: "",
+          headerTintColor: "white",
+        }}
+      />
     </Stack.Navigator>
   );
 };

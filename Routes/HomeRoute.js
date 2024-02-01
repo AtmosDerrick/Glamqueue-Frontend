@@ -22,7 +22,9 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 import Home from "../Screens/Home";
 import HomePageRoute from "./HomePageRoute";
-
+import QueueScreen from "../Screens/QueueScreen";
+import LoginScreen from "../Screens/SignUpScreen";
+import Appointments from "../Screens/Appointment";
 const HomeRoute = () => {
   const Tab = createBottomTabNavigator();
   return (
@@ -57,7 +59,7 @@ const HomeRoute = () => {
       })}>
       <Tab.Screen
         name="Queue"
-        component={Home}
+        component={QueueScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <View
@@ -115,7 +117,7 @@ const HomeRoute = () => {
       />
       <Tab.Screen
         name="Appointment"
-        component={Home}
+        component={Appointments}
         options={{
           tabBarIcon: ({ focused }) => (
             <View

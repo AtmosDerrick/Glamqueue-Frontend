@@ -6,11 +6,10 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import { Picker } from "@react-native-picker/picker";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import Dropdown from "react-native-input-select";
+import DropdownSelect from "react-native-input-select";
 
-const ServiceForm = () => {
+const ServiceForm = ({ setModalVisible, modalVisible }) => {
   const [serviceType, setServiceType] = useState("");
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
@@ -52,20 +51,36 @@ const ServiceForm = () => {
 
   return (
     <View style={styles.container}>
-      <Dropdown
-        label="Country"
-        placeholder="Select an option..."
-        options={[
-          { label: "Washing", value: "washing" },
-          { label: "Corn Row", value: "cornrow" },
-          { label: "Twist", value: "twist" },
-          { label: "Pedicure", value: "perdicure" },
-          { label: "Makeup", value: "markup" },
-        ]}
-        selectedValue={serviceType}
-        onValueChange={(value) => setServiceType(value)}
-        primaryColor={"green"}
-      />
+      <View>
+        <Text className="text-center mb-4 font-bold text-lg text-primary">
+          Classic Hair Cut
+        </Text>
+        <Text className="text-center italic  underline mt-[-15px] mb-4">
+          Book Service
+        </Text>
+      </View>
+      <View className="mt-2">
+        <DropdownSelect
+          placeholder="Select Service Type"
+          options={[
+            { name: "Washing", code: "washing" },
+            { name: "Corn Row", code: "cornrow" },
+            { name: "Wigs", code: "wigs" },
+            { name: "Pedicure", code: "pedicure" },
+          ]}
+          optionLabel={"name"}
+          optionValue={"code"}
+          selectedValue={serviceType}
+          onValueChange={(itemValue) => setServiceType(itemValue)}
+          dropdownStyle={{
+            paddingVertical: 5,
+            paddingHorizontal: 5,
+            minHeight: 50,
+            borderColor: "gray",
+          }}
+        />
+      </View>
+
       <TouchableOpacity style={styles.input} onPress={showDatePicker}>
         <Text>
           {selectedDate ? selectedDate.toDateString() : "Select Date"}
@@ -88,11 +103,27 @@ const ServiceForm = () => {
         mode="time"
         onConfirm={handleTimeConfirm}
         onCancel={hideTimePicker}
-        className="text-black"
       />
+      <View className="mb-4">
+        <Text className="text-sm font-medium">
+          Price: <Text className="text-red-500">Ghc 200</Text>
+        </Text>
+      </View>
 
-      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Submit</Text>
+      <TouchableOpacity
+        className="bg-primary py-3 flex-row justify-center items-center rounded-xl"
+        onPress={handleSubmit}>
+        <Text style={styles.buttonText} className="text-white">
+          Confirm Booking
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        className="border-primary border-2 text-primary py-3 flex-row justify-center items-center rounded-xl mt-6"
+        onPress={() => setModalVisible(!modalVisible)}>
+        <Text style={styles.buttonText} className="text-primary">
+          Cancel
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -103,13 +134,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     paddingHorizontal: 16,
-  },
-  picker: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginBottom: 16,
-    paddingHorizontal: 8,
   },
   input: {
     height: 40,
@@ -126,7 +150,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonText: {
-    color: "white",
     fontWeight: "bold",
   },
 });

@@ -29,7 +29,7 @@ const Home = ({ navigation }) => {
   };
 
   const handleNavigation = () => {
-    navigation.navigate("portfolio");
+    navigation.navigate("Profile");
   };
   return (
     <KeyboardAvoidingView className="px-4 mt-3 h-full ">

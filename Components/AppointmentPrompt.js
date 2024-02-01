@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import BookForm from "./BookForm";
 
-const BookModel = ({ text, style, fontstyle }) => {
+const AppointmentPrompt = ({ text, style, fontstyle }) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.centeredView}>
@@ -16,10 +16,7 @@ const BookModel = ({ text, style, fontstyle }) => {
         }}>
         <View className="w-full h-full flex-row items-center px-4 ">
           <View className="w-full h-[500px] shadow-lg flex-row justify-center items-center bg-white rounded-lg ">
-            <BookForm
-              modalVisible={modalVisible}
-              setModalVisible={setModalVisible}
-            />
+            <Text>Hello</Text>
           </View>
         </View>
       </Modal>
@@ -74,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BookModel;
+export default AppointmentPrompt;

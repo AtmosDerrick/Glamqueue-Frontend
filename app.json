@@ -1,7 +1,9 @@
 {
   "expo": {
-    "name": "Glamqueue-Frontend",
-    "slug": "Glamqueue-Frontend",
+    "name": "Glamqueue",
+    "slug": "glamqueue",
+    "privacy": "public",
+    "description": "An Application Help with joining queues and also booking appointments",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,9 +13,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -7,6 +7,10 @@ import {
   FlatList,
   ScrollView,
   TouchableOpacity,
+  Pressable,
+  Alert,
+  Modal,
+  ActivityIndicator,
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -23,6 +27,21 @@ const saloon3 = require("../assets/saloon3.jpeg");
 const saloon4 = require("../assets/saloon4.jpeg");
 
 const ShopPortFolio = ({ navigation }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const checkQueueSuccess = () => {
+    setModalVisible(true);
+    setSuccess(false);
+
+    setSuccess(true);
+    setTimeout(() => {
+      setSuccess(false);
+      setModalVisible(false);
+      navigation.navigate("Queue");
+    }, 2000);
+  };
+
   const shop = {
     name: "Classic Cuts",
     location: "123 Main Street, Cityville",
@@ -61,6 +80,30 @@ const ShopPortFolio = ({ navigation }) => {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}>
+        <View className="w-full h-full flex-row items-center px-4 ">
+          <View className="w-full h-[200px] shadow-lg flex-row justify-center items-center bg-white rounded-lg ">
+            {success ? (
+              <ActivityIndicator size="large" color="#5d1425" />
+            ) : (
+              <View>
+                <Text className="text-lg font-semibold text-primary">
+                  Join Queue Successful
+                </Text>
+
+                <Pressable></Pressable>
+              </View>
+            )}
+          </View>
+        </View>
+      </Modal>
       <View>
         <View>
           <Image source={shop.coverImage} className="h-[30vh]" />
@@ -117,8 +160,23 @@ const ShopPortFolio = ({ navigation }) => {
               </Text>
             </View>
           </View>
-          <View className="w-full">
-            <BookModel text="Book Now" />
+          <View>
+            <View>
+              <Pressable
+                className="bg-primary  py-2 rounded-md w-full"
+                onPress={checkQueueSuccess}>
+                <Text className="text-center text-white font-medium text-base">
+                  Join Queue
+                </Text>
+              </Pressable>
+            </View>
+            <View className="w-full">
+              <BookModel
+                text="Book Appointment"
+                style="border-primary border-2 py-2 rounded-md w-full"
+                fontstyle="text-center text-primary font-medium text-base"
+              />
+            </View>
           </View>
         </View>
       </View>
